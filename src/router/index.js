@@ -9,6 +9,10 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      redirect: '/danmu'
+    },
+    {
       path: '/hello',
       component: Hello
     },
