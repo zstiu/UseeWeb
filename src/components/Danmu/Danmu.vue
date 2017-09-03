@@ -1,6 +1,6 @@
 <template>
   <div class="danmu">
-    <canvas id="danmuCanvas" width="400px" height="300px"/>
+    <canvas id="danmuCanvas" />
   </div>
 </template>
 
@@ -18,6 +18,9 @@
 
       var scene, textObj;
       let that = this;
+      let canvas = document.getElementById('danmuCanvas')
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       scene = new THREE.Scene();
 
@@ -26,15 +29,23 @@
         antialias: true,
       });
 
-      renderer.shadowMapEnabled = true;
+//      console.log("danmuCanvas--------------> ", document.getElementById('danmuCanvas').height, document.getElementById('danmuCanvas').width);
+//
+//      console.log("new renderer-------------> ", (new THREE.WebGLRenderer).getSize());
+//      console.log("danmuCanvas renderer-----> ", renderer.getSize());
+
+      renderer.shadowMap.enabled = true;
       renderer.shadowMapSoft = true;//软阴影
       renderer.setClearColor(0x000000); // black
-      renderer.setSize( window.innerWidth, window.innerHeight );
+
+//      renderer.setSize( window.innerWidth, window.innerHeight );
+
 
 //      var camera = new THREE.PerspectiveCamera(60, 4000 / 3000, 1, 1000);
       var camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
       camera.position.set(0, 0, 500);
       scene.add(camera);
+
 
 
       // a cube in the scene
@@ -53,6 +64,7 @@
       var pointLight = new THREE.PointLight( 0xffffff, 1.5 );
       pointLight.position.set( 0, 100, 90 );
       scene.add( pointLight );
+
 
        //创建文字
       function createText() {
