@@ -11,7 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/danmu'
+      redirect: '/canvas2D'
     },
     {
       path: '/hello',
